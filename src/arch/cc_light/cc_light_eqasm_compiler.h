@@ -16,16 +16,12 @@
 #include <gate.h>
 #include <ir.h>
 #include <eqasm_compiler.h>
-#include <arch/cc_light/cc_light_eqasm.h>
 #include <scheduler.h>
 #include <mapper.h>
 #include <clifford.h>
 #include <latency_compensation.h>
 #include <buffer_insertion.h>
 #include <qsoverlay.h>
-
-// eqasm code : set of cc_light_eqasm instructions
-typedef std::vector<ql::arch::cc_light_eqasm_instr_t> eqasm_t;
 
 void ccl_assert_fail(const char *f, int l, const char *s)
 {
@@ -677,7 +673,6 @@ class cc_light_eqasm_compiler : public eqasm_compiler
 {
 public:
 
-    cc_light_eqasm_program_t cc_light_eqasm_instructions;
     size_t          total_exec_time = 0;
 
 public:
