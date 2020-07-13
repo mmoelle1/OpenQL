@@ -17,7 +17,7 @@ class Test_Alap_Rc_Schedule(unittest.TestCase):
     def setUp(self):
         ql.set_option('scheduler', self._SCHEDULER)
         ql.set_option('output_dir', output_dir)
-        ql.set_option('log_level', "LOG_NOTHING")
+        ql.set_option('log_level', "LOG_DEBUG")
 
     def test_qwg(self):
         self.setUp()

@@ -30,7 +30,7 @@ option(
 # With what optimization level the library is to be built.
 if(NOT CMAKE_BUILD_TYPE)
     set(
-        CMAKE_BUILD_TYPE Release CACHE STRING
+        CMAKE_BUILD_TYPE Debug CACHE STRING
         "Type of build (Debug, Release)" FORCE
     )
     set_property(
@@ -75,7 +75,7 @@ mark_as_advanced(OPENQL_PYTHON_EXT)
 option(
     WITH_UNITARY_DECOMPOSITION
     "Whether unitary decomposition support should be enabled"
-    ON
+    OFF # FIXME
 )
 
 
