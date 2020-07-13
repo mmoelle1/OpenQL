@@ -55,7 +55,9 @@ namespace ql
             size_t          total_exec_time = 0;
             size_t          buffer_matrix[__operation_types_num__][__operation_types_num__];
             size_t          iterations;  // loop iterations
+#ifdef NEEDED
             eqasm_t         timed_eqasm_code;
+#endif
 
             #define __ns_to_cycle(t) ((size_t)t/(size_t)ns_per_cycle)
 
@@ -90,11 +92,13 @@ namespace ql
                         throw e;
                     }
 
+#ifdef NEEDED
                     IOUT("writing eqasm code to '" << ( ql::options::get("output_dir") + "/" + unique_name+".asm"));
-                    write_eqasm( ql::options::get("output_dir") + "/" + unique_name + ".asm");
+                    // write_eqasm( ql::options::get("output_dir") + "/" + unique_name + ".asm");
 
                     IOUT("writing traces to '" << ( ql::options::get("output_dir") + "/trace.dat"));
                     write_traces( ql::options::get("output_dir") + "/trace.dat");
+#endif
                 }
             }
 
@@ -124,7 +128,9 @@ namespace ql
 
                IOUT("[-] iterations : " << iterations);
 
+#ifdef NEEDED
                eqasm_t eqasm_code;
+#endif
                // ql::instruction_map_t& instr_map = platform.instruction_map;
                const json& instruction_settings       = platform.instruction_settings;
 
@@ -370,6 +376,7 @@ namespace ql
              */
              void write_timed_eqasm(std::string file_name="")
              {
+#ifdef NEEDED
                std::stringstream ss;
                IOUT("writing time qumis code...");
                for (std::string l : timed_eqasm_code)
@@ -379,6 +386,7 @@ namespace ql
                   std::cout << ss.str() << std::endl;
                else
                   utils::write_file(file_name,t_eqasm);
+#endif
             }
 
             /**
@@ -774,6 +782,7 @@ namespace ql
                return buffer_matrix[t1][t2];
             }
 
+#ifdef NEEDED
             /**
              * dump traces
              */
@@ -810,6 +819,7 @@ namespace ql
                diagram.dump(ql::options::get("output_dir") + "/trace.dat");
 
             }
+#endif
 
 
          private:
@@ -821,6 +831,7 @@ namespace ql
              */
             void emit_eqasm()
             {
+#ifdef NEEDED
                DOUT("compiling eqasm...");
                eqasm_code.clear();
                timed_eqasm_code.clear();
@@ -868,6 +879,7 @@ namespace ql
                else
                   eqasm_code.push_back("beq r13, r13 start");
                DOUT("eqasm compilation done.");
+#endif
             }
 
 
@@ -876,6 +888,7 @@ namespace ql
              */
             void wait(size_t t)
             {
+#ifdef NEEDED
                if (t < __max_wait__)
                {
                   eqasm_code.push_back("wait "+std::to_string(t));
@@ -889,6 +902,7 @@ namespace ql
                   if (rest)
                      eqasm_code.push_back("wait "+std::to_string(rest));
                }
+#endif
             }
 
 

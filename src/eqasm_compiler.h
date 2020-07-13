@@ -15,7 +15,9 @@
 #include <program.h>
 #include <platform.h>
 
+#ifdef NEEDED
 typedef std::vector<std::string> eqasm_t;
+#endif
 
 namespace ql
 {
@@ -26,8 +28,10 @@ namespace ql
     */
     class eqasm_compiler
     {
+#ifdef NEEDED
     public:
         eqasm_t eqasm_code;
+#endif
 
     public:
 
@@ -38,6 +42,7 @@ namespace ql
         {
         }
 
+#ifdef NEEDED
         /**
          * write eqasm code to file/stdout
          */
@@ -73,6 +78,7 @@ namespace ql
         virtual void write_traces(std::string file_name="")
         {
         }
+#endif
     };
 }
 
